@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.http import HttpResponse
-
+from .models import Product
+user='admin'
+password='admin'
 # Create your views here.
 def login(request):
     if 'uname' in request.session:
@@ -9,7 +11,7 @@ def login(request):
     if request.method == 'POST':
         uname = request.POST['uname']
         password = request.POST['password']
-        if uname == 'admin' and password == 'admin':
+        if uname == user and password == password:
             request.session['uname'] = uname
             print("=======",request.session['uname'])
             return render(request, 'home.html')
@@ -21,6 +23,7 @@ def login(request):
 
 def home(request):
     if 'uname' in request.session:
+        pdt1=Product(name='Laptop',description='HP',price=10000)
         return render(request, 'home.html')
     else:
         return redirect(to='login')
