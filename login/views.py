@@ -3,21 +3,42 @@ from django.contrib import messages
 from django.http import HttpResponse
 from .models import Product
 user='admin'
-password='admin'
+pswd='admin'
 # Create your views here.
 def login(request):
     if 'uname' in request.session:
         return redirect(to='home')
     if request.method == 'POST':
+        
         uname = request.POST['uname']
         password = request.POST['password']
-        if uname == user and password == password:
-            request.session['uname'] = uname
-            
-            return redirect(to='home')
-        else:
+        print("000",uname)
+        if len(uname)==0 and len(password)==0:
             messages.info(request,'Enter Valid username and password')
             return render(request, 'login.html')
+        else:
+            if uname == user:
+                if password == pswd:
+                    print
+                    request.session['uname'] = uname
+                    return redirect(to='home')
+                else:
+                    psmsg = 'Password is incorrect'
+                    return render(request, 'login.html', {'psmsg':psmsg})
+            else:
+                unmsg = 'Username is incorrect'
+                return render(request, 'login.html', {'unmsg':unmsg})
+                
+            
+        
+        # if uname == user and password == password:
+        #     request.session['uname'] = uname
+            
+        #     return redirect(to='home')
+        # else:
+        #     messages.info(request,'Enter Valid username and password')
+            
+        #     return render(request, 'login.html',)
     else:   
         return render(request, 'login.html')
 

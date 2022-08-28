@@ -25,18 +25,21 @@
                 <div class="form-outline mb-4">
                   <input type="uname" id="form3Example3" name="uname" class="form-control form-control-lg"
                     placeholder="Enter a valid username" />
-                  <label class="form-label" for="form3Example3">User Name</label>
+                    <h6 class="text-danger">{{unmsg}}</h6>
+                  
                 </div>
                 <!-- Password input -->
                 <div class="form-outline mb-3">
                   <input type="password" id="form3Example4" name="password" class="form-control form-control-lg"
                     placeholder="Enter password" />
-                  <label class="form-label" for="form3Example4">Password</label>
+                    <h6 class="text-danger">{{psmsg}}</h6>
+                  
                 </div>
                 <div>
                   {%for message in messages %}
                   <h6 class="text-danger">{{message}}</h6>
                   {%endfor%}
+                  
                 </div>
                 <div class="text-center text-lg-start mt-4 pt-2">
                   <button type="submit" class="btn btn-primary btn-lg"
