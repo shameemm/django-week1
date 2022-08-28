@@ -12,7 +12,6 @@ def login(request):
         
         uname = request.POST['uname']
         password = request.POST['password']
-        print("000",uname)
         if len(uname)==0 and len(password)==0:
             messages.info(request,'Enter Valid username and password')
             return render(request, 'login.html')
