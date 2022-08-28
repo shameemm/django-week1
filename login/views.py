@@ -13,8 +13,8 @@ def login(request):
         password = request.POST['password']
         if uname == user and password == password:
             request.session['uname'] = uname
-            print("=======",request.session['uname'])
-            return render(request, 'home.html')
+            
+            return redirect(to='home')
         else:
             messages.info(request,'Enter Valid username and password')
             return render(request, 'login.html')
@@ -23,8 +23,26 @@ def login(request):
 
 def home(request):
     if 'uname' in request.session:
-        pdt1=Product(name='Laptop',description='HP',price=10000)
-        return render(request, 'home.html')
+        pdt1=Product()
+        pdt1.name='SAMSUNG Galaxy S22 5G (Green, 128 GB)  (8 GB RAM)'
+        pdt1.description='Good smart phone from Samsung. It gives good Battery.'
+        pdt1.img='https://rukminim1.flixcart.com/image/312/312/xif0q/mobile/3/1/n/-original-imaggj686yhjdrgk.jpeg?q=70'
+        pdt1.price=99999
+        
+        pdt2=Product()
+        pdt2.name='APPLE iPhone 13 (Blue, 128 GB)'
+        pdt2.description='Has a good camera, battery and price'
+        pdt2.img='https://rukminim1.flixcart.com/image/416/416/ktketu80/mobile/2/y/o/iphone-13-mlpk3hn-a-apple-original-imag6vpyur6hjngg.jpeg?q=70'
+        pdt2.price=65999
+        
+        pdt3=Product()
+        pdt3.name='Nothing Phone (1) (Black, 128 GB)  (8 GB RAM)'
+        pdt3.description='Has a good camera, battery and price on affordable price'
+        pdt3.img='https://rukminim1.flixcart.com/image/416/416/l5h2xe80/mobile/5/x/r/-original-imagg4xza5rehdqv.jpeg?q=70'
+        pdt3.price=33999
+        
+        pdts=[pdt1,pdt2,pdt3]
+        return render(request, 'home.html',{'pdts':pdts})
     else:
         return redirect(to='login')
 
