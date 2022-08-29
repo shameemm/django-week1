@@ -64,6 +64,7 @@ def home(request):
         pdts=[pdt1,pdt2,pdt3]
         return render(request, 'home.html',{'pdts':pdts})
     else:
+        
         return redirect(to='login')
 
 def logout(request):
