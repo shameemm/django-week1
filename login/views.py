@@ -30,14 +30,7 @@ def login(request):
                 
             
         
-        # if uname == user and password == password:
-        #     request.session['uname'] = uname
-            
-        #     return redirect(to='home')
-        # else:
-        #     messages.info(request,'Enter Valid username and password')
-            
-        #     return render(request, 'login.html',)
+        
     else:   
         return render(request, 'login.html')
 
